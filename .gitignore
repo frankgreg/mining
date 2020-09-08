@@ -1,3 +1,24 @@
+# IntelliJ project files
+.idea/
+*.iml
+out
+gen
+
+# Folders
+dump/
+
+# File types
+*.csv
+*.json
+*.proto
+*.bson
+*.png
+*.gz
+*.html
+*.xlsx
+*.graphml
+*.zip
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
