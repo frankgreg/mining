@@ -2,10 +2,8 @@
 
 import hashlib
 import binascii
-import struct
 import datetime
 import time
-import calendar
 
 #####################################################
 #####################################################
@@ -21,7 +19,7 @@ d_previous_block = "00000000000000000003fec678e0cd293f29d2919455a73c99bef43412de
 d_merkle_root    = "4eace6fca92c83642b8266c39a558a8924fd91aa1368d9b351a09c552ce7829d"
 d_bits           = "171007ea"
 d_nonce          = "bb7eda04"
-d = datetime.datetime(2020,8,24,15,27,17)
+d = datetime.datetime(2020, 8, 24, 15, 27, 17)
 #################################################
 #################################################
 
@@ -67,10 +65,9 @@ print("Bits inverted 2x2           = ", bits)
 
 # MINING
 
-guess = int(d_nonce,16)
+guess = int(d_nonce, 16)
 j = guess - 100000
-while j < int('ffffffff',16):
-
+while j < int('ffffffff', 16):
     n_0 = j
     n = hex(n_0)[2:].zfill(8)
     nhex = str(n)
@@ -86,17 +83,17 @@ while j < int('ffffffff',16):
     hash = binascii.b2a_hex(hash[::-1])
     hash = str(hash,'utf-8')
 
-    if int(hash,16) <= int('0000000000000000000fffffffffffffffffffffffffffffffffffffffffffff',16):
+    if int(hash, 16) <= int('0000000000000000000fffffffffffffffffffffffffffffffffffffffffffff', 16):
         nonce_r = hex(j)[2:].zfill(8)
-        j = int('ffffffff',16)
+        j = int('ffffffff', 16)
     else:
         aaa = 20
     j = j + 1
 
 print('')
-print("Inverted hash:     ",hash_inv)
-print("Block hash:        ",hash)
-print("Nonce:             ",nonce_r)
+print("Inverted hash:     ", hash_inv)
+print("Block hash:        ", hash)
+print("Nonce:             ", nonce_r)
 
-nonce_decimal = int(nonce_r,16)
-print("Nonce decimal:     ",nonce_decimal)
+nonce_decimal = int(nonce_r, 16)
+print("Nonce decimal:     ", nonce_decimal)
