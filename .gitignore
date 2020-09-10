@@ -6,6 +6,7 @@ gen
 
 # Folders
 dump/
+old/
 
 # File types
 *.csv
