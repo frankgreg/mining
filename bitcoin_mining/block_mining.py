@@ -46,23 +46,23 @@ def get_block_data_from_btc_api(block_hash):
 @elapsed_time
 def block_mining(block_data):
     # btc api
-    version = convert_integer_to_reversed_hex(block_data['version'], 'x')
-    previous_block = convert_hex_to_reversed_hex(block_data['prev_block_hash'])
-    timestamp = convert_integer_to_reversed_hex(block_data['timestamp'], 'x')
-    merkle_root = convert_hex_to_reversed_hex(block_data['mrkl_root'])
-    bits = convert_integer_to_reversed_hex(block_data['bits'], 'x')
-    block_nonce = block_data['nonce']  # 3145652740
-
-    # blockchain api
-    # version = convert_integer_to_reversed_hex(block_data['ver'], 'x')
-    # previous_block = convert_hex_to_reversed_hex(block_data['prev_block'])
+    # version = convert_integer_to_reversed_hex(block_data['version'], 'x')
+    # previous_block = convert_hex_to_reversed_hex(block_data['prev_block_hash'])
+    # timestamp = convert_integer_to_reversed_hex(block_data['timestamp'], 'x')
     # merkle_root = convert_hex_to_reversed_hex(block_data['mrkl_root'])
-    # timestamp = convert_integer_to_reversed_hex(block_data['time'], 'x')
     # bits = convert_integer_to_reversed_hex(block_data['bits'], 'x')
     # block_nonce = block_data['nonce']  # 3145652740
 
-    # guess = block_nonce - 1000
-    guess = 0
+    # blockchain api
+    version = convert_integer_to_reversed_hex(block_data['ver'], 'x')
+    previous_block = convert_hex_to_reversed_hex(block_data['prev_block'])
+    merkle_root = convert_hex_to_reversed_hex(block_data['mrkl_root'])
+    timestamp = convert_integer_to_reversed_hex(block_data['time'], 'x')
+    bits = convert_integer_to_reversed_hex(block_data['bits'], 'x')
+    block_nonce = block_data['nonce']  # 3145652740
+
+    guess = block_nonce - 1000
+    # guess = 0
     while guess >= 0:
         nonce = convert_integer_to_reversed_hex(guess, '08x')
 

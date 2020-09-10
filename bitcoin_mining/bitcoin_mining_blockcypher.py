@@ -44,10 +44,14 @@ def block_mining(block_data):
         hash_byte = hashlib.sha256(hashlib.sha256(header_bin).digest()).digest()
         hash_int = int.from_bytes(hash_byte, byteorder='little')
         if hash_int <= target:
+            reversed_hash_byte = hash_byte[::-1]
+            hash_found = reversed_hash_byte.hex()
             print(
                 f'Nonce officiel : {block_nonce}\n'
                 f'Nonce trouvé: {nonce_guess}\n'
                 f'Nonce trouvé hex: {hex(nonce_guess)}\n'
+                f'Hash officiel : {block_data["hash"]}\n'
+                f'Hash trouvé : {hash_found}\n'
                 f"Nombre d'essais : {counter}"
             )
             break
@@ -87,7 +91,7 @@ def convert_hex_to_reversed_hex(hex_):
 
 
 if __name__ == '__main__':
-    # url = 'https://btc.com/00000000000000000006adad23e5d52bf49614e796f6dc694b13af2d7f05a32f'
-    url = 'https://btc.com/0000000000000000000ca006e5d26bb2ad04bfe5638af89dd8231c8208aa10e6'
+    url = 'https://btc.com/00000000000000000006adad23e5d52bf49614e796f6dc694b13af2d7f05a32f'
+    # url = 'https://btc.com/0000000000000000000ca006e5d26bb2ad04bfe5638af89dd8231c8208aa10e6'
     BLOCK_HASH = url.split('/')[-1]
     main(BLOCK_HASH)
