@@ -35,7 +35,7 @@ def block_mining(block_data):
     target = calculate_target(block_data['bits'])
     block_nonce = block_data['nonce']
 
-    nonce_guess = block_nonce - int(1e6)
+    nonce_guess = block_nonce - int(1e5)
     counter = 1
     while nonce_guess >= 0:
         nonce = convert_integer_to_reversed_hex(nonce_guess)
@@ -68,16 +68,15 @@ def convert_datetime_to_reversed_hex(datetime_):
 
 def convert_integer_to_reversed_hex(integer):
     bytes_ = integer.to_bytes(4, byteorder='little')
-    bytearray_ = bytearray(bytes_)
-    reversed_hex = ''.join(format(byte, '02x') for byte in bytearray_)
+    reversed_hex = ''.join(format(byte, '02x') for byte in bytes_)
 
     return reversed_hex
 
 
 def convert_hex_to_reversed_hex(hex_):
-    bytearray_ = bytearray.fromhex(hex_)
-    reversed_bytearray = bytearray_[::-1]
-    reversed_hex = ''.join(format(byte, '02x') for byte in reversed_bytearray)
+    bytes_ = bytes.fromhex(hex_)
+    reversed_bytes = bytes_[::-1]
+    reversed_hex = ''.join(format(byte, '02x') for byte in reversed_bytes)
 
     return reversed_hex
 
@@ -95,6 +94,13 @@ if __name__ == '__main__':
     # url = 'https://btc.com/00000000000000000006adad23e5d52bf49614e796f6dc694b13af2d7f05a32f'
     # url = 'https://btc.com/0000000000000000000ca006e5d26bb2ad04bfe5638af89dd8231c8208aa10e6'
     # url = 'https://btc.com/00000000000000000005e72210f6d25e0381fbe8e4b26888d22a58a5fb6b801c'
-    url = 'https://btc.com/0000000000000000000796982f53f6fff215a7c23f4fb8f41ffe31772b731f23'
+    # url = 'https://btc.com/0000000000000000000796982f53f6fff215a7c23f4fb8f41ffe31772b731f23'
+    url = 'https://btc.com/0000000000000000000da115a165dff4c117ff40c8e5c0d828bb38fe26320c51'
     BLOCK_HASH = url.split('/')[-1]
     main(BLOCK_HASH)
+
+
+a = bytes('asdf', encoding="utf-8")
+aa = 'asdf'.encode()
+a == aa
+a[0]

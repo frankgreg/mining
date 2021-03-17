@@ -68,12 +68,8 @@ print("Bits inverted 2x2           = ", bits)
 guess = int(d_nonce, 16)
 j = guess - 100000
 while j < int('ffffffff', 16):
-    n_0 = j
-    n = hex(n_0)[2:].zfill(8)
-    nhex = str(n)
-    nn = bytearray.fromhex(nhex)
-    nn.reverse()
-    nonce = ''.join(format(x, '02x') for x in nn)
+
+
 
     header_hex = version + previous_blk + merkleroot + timestamp + bits + nonce
     header_bin = binascii.a2b_hex(header_hex)
